@@ -1,0 +1,12 @@
+{
+  "name": "MaintenanceApp",
+  "displayName": "MaintenanceApp",
+  "expo": {
+    "name": "MaintenanceApp",
+    "slug": "MaintenanceApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
