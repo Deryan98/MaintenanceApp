@@ -5,7 +5,8 @@ import Colors from "../constants/Colors";
 import { Icon } from "react-native-elements";
 
 //screens
-import HomeScreen from "../screens/HomeScreen";
+import AnnounceScreen from "../screens/AnnounceScreen";
+import AssistanceScreen from "../screens/AssistanceScreen";
 
 export default function BottomTabs() {
   const BottomTab = createBottomTabNavigator();
@@ -49,14 +50,14 @@ export default function BottomTabs() {
     >
       <BottomTab.Screen
         name="Home"
-        component={HomeScreen}
+        component={AssistanceScreen}
         options={{
           tabBarLabel: "Mantenimientos",
         }}
       />
       <BottomTab.Screen
         name="User"
-        component={HomeScreen}
+        component={AnnounceScreen}
         options={{
           tabBarLabel: "Historial",
         }}

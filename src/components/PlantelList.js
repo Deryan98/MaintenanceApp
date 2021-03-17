@@ -1,12 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import { color } from "react-native-reanimated";
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
 
-export default function HomeScreen() {
+export default function AnnounceScreen() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar hidden={true} barStyle="light-content" />
       <View style={styles.body}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>App de Mantenimiento</Text>
@@ -20,8 +22,7 @@ export default function HomeScreen() {
           <Text style={styles.announcement}>Espérala Pronto!</Text>
         </View>
       </View>
-      <StatusBar style={styles.statusBar} />
-    </View>
+    </SafeAreaView>
   );
 }
 
