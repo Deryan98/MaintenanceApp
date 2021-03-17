@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     backgroundColor: Colors.complementary,
     height: "30%",
+    paddingHorizontal: 10,
     justifyContent: "center",
     alignItems: "center",
     opacity: 0.8,

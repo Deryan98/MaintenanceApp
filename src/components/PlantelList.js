@@ -19,8 +19,8 @@ export default function PlantelList({ data, tipoPlantel }) {
       <FlatList
         data={dataToRender}
         renderItem={renderItem}
-        // keyExtractor={(item) => item.id}
-
+        keyExtractor={(item) => item.id}
+        style={{ flexGrow: 1, height: "70%", backgroundColor: "transparent" }}
         horizontal={false}
         numColumns={2}
       />

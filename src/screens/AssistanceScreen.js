@@ -1,23 +1,21 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
+import { ButtonGroup } from "react-native-elements";
+//components
+import PlantelList from "../components/PlantelList";
+import { Indication } from "../components/Indication";
+// import { ButtonGroup } from "../components/ButtonGroup";
+//constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
-import { ButtonGroup } from "react-native-elements";
-import PlantelList from "../components/PlantelList";
+//dummy
 import DATA from "../dummy/DATA";
 
 export default function AssistanceScreen() {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const component1 = () => <Text>Plantel Fijo</Text>;
-  const component2 = () => <Text>Mini Plantel</Text>;
-  const component3 = () => <Text>Plantel Móvil</Text>;
-  const buttons = [
-    { element: component1 },
-    { element: component2 },
-    { element: component3 },
-  ];
+  const buttons = ["Plantel Fijo", "Mini Plantel", "Plantel Móvil"];
 
   const updateIndex = (selectedIndex) => {
     setSelectedIndex(selectedIndex);
@@ -37,30 +35,31 @@ export default function AssistanceScreen() {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <StatusBar hidden={true} barStyle="light-content" />
-      <ScrollView>
-        <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Control de Asistencia</Text>
-          </View>
-          <View style={styles.indicationContainer}>
-            <Text style={styles.indication}>
-              Elija un plantel para marcar asistencia
-            </Text>
-          </View>
-
-          <ButtonGroup
-            onPress={updateIndex}
-            selectedIndex={selectedIndex}
-            buttons={buttons}
-            containerStyle={styles.fragmentContainer}
-            innerBorderStyle={{ width: 0 }}
-            buttonContainerStyle={styles.fragmentButtonContainer}
-            selectedTextStyle={{ color: Colors.accent }}
-            selectedButtonStyle={styles.fragmentSelectedButton}
-          />
-          {renderFragment(selectedIndex)}
+      {/* <ScrollView> */}
+      <View style={styles.container}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Control de Asistencia</Text>
         </View>
-      </ScrollView>
+        <Indication>Elija un plantel para marcar asistencia</Indication>
+        <ButtonGroup
+          onPress={updateIndex}
+          selectedIndex={selectedIndex}
+          buttons={buttons}
+          textStyle={styles.textButtonStyle}
+          containerStyle={styles.fragmentContainer}
+          innerBorderStyle={{ width: 0 }}
+          buttonContainerStyle={styles.fragmentButtonContainer}
+          selectedTextStyle={{ fontWeight: "bold", color: Colors.accent }}
+          selectedButtonStyle={styles.fragmentSelectedButton}
+        />
+        {/* <ButtonGroup
+            buttons={buttons}
+            updateIndex={updateIndex}
+            selectedIndex={selectedIndex}
+          /> */}
+        {renderFragment(selectedIndex)}
+      </View>
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
@@ -90,28 +89,26 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "normal",
   },
-  indicationContainer: {
-    height: HeightTitleContainer,
-    backgroundColor: Colors.inactive,
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center",
+  textButtonStyle: {
+    color: Colors.complementary,
+    fontSize: 15,
+    fontWeight: "bold",
+    marginHorizontal: 20,
+    textAlign: "center",
   },
-  indication: {
-    color: Colors.dominant,
-    fontSize: 18,
-    fontWeight: "normal",
-  },
+
   fragmentContainer: {
     height: HeightTitleContainer,
+    borderWidth: 0,
     borderColor: Colors.complementary,
     marginVertical: 10,
+    marginHorizontal: 0,
   },
   fragmentButtonContainer: {
     borderWidth: 2,
   },
   fragmentSelectedButton: {
-    backgroundColor: Colors.accent,
+    backgroundColor: Colors.complementary,
   },
   fragmentTextSelectedStyle: {},
 });
