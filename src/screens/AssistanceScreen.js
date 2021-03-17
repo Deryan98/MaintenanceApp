@@ -5,6 +5,7 @@ import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
 import { ButtonGroup } from "react-native-elements";
 import PlantelList from "../components/PlantelList";
+import DATA from "../dummy/DATA";
 
 export default function AssistanceScreen() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -21,93 +22,6 @@ export default function AssistanceScreen() {
   const updateIndex = (selectedIndex) => {
     setSelectedIndex(selectedIndex);
   };
-
-  const DATA = [
-    {
-      id: "plantel1",
-      title: "KSA1 San Andrés",
-      image: "string1",
-      tipo: "Fijo",
-    },
-    {
-      id: "plantel2",
-      title: "KST1 Santa Tecla",
-      image: "string2",
-      tipo: "Fijo",
-    },
-    {
-      id: "plantel3",
-      title: "KSM1 San Miguel",
-      image: "string3",
-      tipo: "Fijo",
-    },
-    {
-      id: "plantel4",
-      title: "Plantel Sonsonate",
-      image: "string1",
-      tipo: "Mini",
-    },
-    {
-      id: "plantel5",
-      title: "Plantel La Paz",
-      image: "string2",
-      tipo: "Mini",
-    },
-    {
-      id: "plantel6",
-      title: "Plantel Apopa",
-      image: "string3",
-      tipo: "Mini",
-    },
-    {
-      id: "plantel7",
-      title: "Plantel Santa Ana",
-      image: "string3",
-      tipo: "Mini",
-    },
-    {
-      id: "plantel8",
-      title: "Plantel Santa Rosa de Lima",
-      image: "string3",
-      tipo: "Mini",
-    },
-    {
-      id: "plantel9",
-      title: "KM25",
-      image: "string1",
-      tipo: "Movil",
-    },
-    {
-      id: "plantel10",
-      title: "KM26",
-      image: "string2",
-      tipo: "Movil",
-    },
-    {
-      id: "plantel11",
-      title: "KM27",
-      image: "string3",
-      tipo: "Movil",
-    },
-    {
-      id: "plantel12",
-      title: "KM28",
-      image: "string3",
-      tipo: "Movil",
-    },
-    {
-      id: "plantel13",
-      title: "KM29",
-      image: "string3",
-      tipo: "Movil",
-    },
-    {
-      id: "plantel14",
-      title: "KM35",
-      image: "string3",
-      tipo: "Movil",
-    },
-  ];
 
   const renderFragment = (selectedIndex) => {
     switch (selectedIndex) {

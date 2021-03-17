@@ -1,15 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
-
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+import { PlantelCard } from "./PlantelCard";
 
 export default function PlantelList({ data, tipoPlantel }) {
-  const renderItem = ({ item }) => <Item title={item.title} />;
+  const renderItem = ({ item }) => <PlantelCard title={item.title} />;
 
   let dataToRender = [];
 
@@ -24,7 +19,10 @@ export default function PlantelList({ data, tipoPlantel }) {
       <FlatList
         data={dataToRender}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        // keyExtractor={(item) => item.id}
+
+        horizontal={false}
+        numColumns={2}
       />
     </View>
   );
@@ -32,15 +30,7 @@ export default function PlantelList({ data, tipoPlantel }) {
 
 const styles = StyleSheet.create({
   container: {
+    height: "100%",
     flex: 1,
-  },
-  item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 20,
   },
 });
