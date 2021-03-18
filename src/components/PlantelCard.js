@@ -15,9 +15,9 @@ const HandlePress = () => {
   return Alert.alert("Seguimos Trabajando!");
 };
 
-export const PlantelCard = ({ title, image }) => (
+export const PlantelCard = ({ title, image, toggleOverlay }) => (
   <View style={styles.plantelItem}>
-    <TouchableOpacity onPress={() => HandlePress()}>
+    <TouchableOpacity onPress={toggleOverlay}>
       <ImageBackground source={SanMiguel} style={styles.bgImage}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{title}</Text>

@@ -1,10 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
-import { ButtonGroup } from "react-native-elements";
+import { ButtonGroup, Overlay } from "react-native-elements";
 //components
 import PlantelList from "../components/PlantelList";
 import { Indication } from "../components/Indication";
+import { Title } from "../components/Title";
+import { ConfirmAssistance } from "../components/ConfirmAssistance";
 // import { ButtonGroup } from "../components/ButtonGroup";
 //constants
 import Colors from "../constants/Colors";
@@ -14,6 +16,7 @@ import DATA from "../dummy/DATA";
 
 export default function AssistanceScreen() {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [visible, setVisible] = useState(false);
 
   const buttons = ["Plantel Fijo", "Mini Plantel", "Plantel Móvil"];
 
@@ -21,25 +24,44 @@ export default function AssistanceScreen() {
     setSelectedIndex(selectedIndex);
   };
 
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
   const renderFragment = (selectedIndex) => {
     switch (selectedIndex) {
       case 0:
-        return <PlantelList tipoPlantel="Fijo" data={DATA} />;
+        return (
+          <PlantelList
+            tipoPlantel="Fijo"
+            data={DATA}
+            toggleOverlay={toggleOverlay}
+          />
+        );
       case 1:
-        return <PlantelList tipoPlantel="Mini" data={DATA} />;
+        return (
+          <PlantelList
+            tipoPlantel="Mini"
+            data={DATA}
+            toggleOverlay={toggleOverlay}
+          />
+        );
       case 2:
-        return <PlantelList tipoPlantel="Movil" data={DATA} />;
+        return (
+          <PlantelList
+            tipoPlantel="Movil"
+            data={DATA}
+            toggleOverlay={toggleOverlay}
+          />
+        );
     }
   };
 
   return (
     <SafeAreaView style={styles.mainContainer}>
       <StatusBar hidden={true} barStyle="light-content" />
-      {/* <ScrollView> */}
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Control de Asistencia</Text>
-        </View>
+        <Title>Control de Asistencia</Title>
         <Indication>Elija un plantel para marcar asistencia</Indication>
         <ButtonGroup
           onPress={updateIndex}
@@ -59,7 +81,7 @@ export default function AssistanceScreen() {
           /> */}
         {renderFragment(selectedIndex)}
       </View>
-      {/* </ScrollView> */}
+      <ConfirmAssistance visible={visible} toggleOverlay={toggleOverlay} />
     </SafeAreaView>
   );
 }

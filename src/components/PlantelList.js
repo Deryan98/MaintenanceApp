@@ -3,8 +3,10 @@ import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { PlantelCard } from "./PlantelCard";
 
-export default function PlantelList({ data, tipoPlantel }) {
-  const renderItem = ({ item }) => <PlantelCard title={item.title} />;
+export default function PlantelList({ data, tipoPlantel, toggleOverlay }) {
+  const renderItem = ({ item }) => (
+    <PlantelCard title={item.title} toggleOverlay={toggleOverlay} />
+  );
 
   let dataToRender = [];
 
