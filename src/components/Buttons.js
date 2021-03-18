@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import Colors from "../constants/Colors";
+import Dimensions from "../constants/Dimensions";
 
 export const ConfirmButton = ({ buttonText }) => {
   return (
@@ -11,6 +12,28 @@ export const ConfirmButton = ({ buttonText }) => {
       titleStyle={styles.confirmButtonText}
       containerStyle={styles.confirmButtonContainer}
     />
+  );
+};
+
+export const CancelButton = ({ onPress }) => {
+  return (
+    <View style={styles.cancelButtonContainer}>
+      <TouchableOpacity style={styles.cancelButton} onPress={onPress}>
+        <View
+          style={{
+            ...styles.cancelButtonline,
+            transform: [{ rotate: "45deg" }],
+          }}
+        >
+          <View
+            style={{
+              ...styles.cancelButtonline,
+              transform: [{ rotate: "90deg" }],
+            }}
+          ></View>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -27,5 +50,23 @@ const styles = StyleSheet.create({
   confirmButtonText: {
     color: Colors.accent,
     fontSize: 25,
+  },
+  cancelButton: {
+    width: 40,
+    height: 40,
+    backgroundColor: Colors.complementary,
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cancelButtonline: {
+    width: 25,
+    height: 7,
+    backgroundColor: Colors.accent,
+    borderRadius: 2,
+  },
+  cancelButtonContainer: {
+    width: Dimensions.width * 0.8,
+    alignItems: "flex-end",
   },
 });

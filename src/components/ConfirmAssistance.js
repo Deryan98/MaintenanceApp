@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Overlay, CheckBox, Button } from "react-native-elements";
 //components
 import { Title } from "./Title";
 import { Clock } from "./Clock";
-import { ConfirmButton } from "./Buttons";
+import { ConfirmButton, CancelButton } from "./Buttons";
 //constants
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
+import { Col } from "native-base";
 
 export const ConfirmAssistance = ({
   visible,
@@ -26,23 +27,26 @@ export const ConfirmAssistance = ({
       onBackdropPress={toggleOverlay}
       overlayStyle={styles.overlay}
     >
-      <View style={styles.container}>
-        <Title size={30}>{titleText}</Title>
-        <CheckBox
-          center
-          title={checkText}
-          checked={check}
-          onPress={toggleCheckBox}
-          style={styles.check}
-        />
-        <Clock />
-        <View>
-          <Text style={styles.notifyAdminText}>
-            Se notificará a los administradores
-          </Text>
+      <>
+        <CancelButton onPress={toggleOverlay} />
+        <View style={styles.container}>
+          <Title size={30}>{titleText}</Title>
+          <CheckBox
+            center
+            title={checkText}
+            checked={check}
+            onPress={toggleCheckBox}
+            style={styles.check}
+          />
+          <Clock />
+          <View>
+            <Text style={styles.notifyAdminText}>
+              Se notificará a los administradores
+            </Text>
+          </View>
+          <ConfirmButton buttonText={buttonText} />
         </View>
-        <ConfirmButton buttonText={buttonText} />
-      </View>
+      </>
     </Overlay>
   );
 };
@@ -63,5 +67,23 @@ const styles = StyleSheet.create({
   notifyAdminText: {
     fontSize: 18,
     fontWeight: "bold",
+  },
+  cancelButton: {
+    width: 40,
+    height: 40,
+    backgroundColor: Colors.complementary,
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  line: {
+    width: 25,
+    height: 7,
+    backgroundColor: Colors.accent,
+    borderRadius: 2,
+  },
+  cancelButtonContainer: {
+    width: Dimensions.width * 0.8,
+    alignItems: "flex-end",
   },
 });
