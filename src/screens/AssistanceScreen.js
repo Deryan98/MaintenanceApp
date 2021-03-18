@@ -1,13 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
-import { ButtonGroup, Overlay } from "react-native-elements";
+import { Overlay } from "react-native-elements";
 //components
 import PlantelList from "../components/PlantelList";
 import { Indication } from "../components/Indication";
 import { Title } from "../components/Title";
 import { ConfirmAssistance } from "../components/ConfirmAssistance";
-// import { ButtonGroup } from "../components/ButtonGroup";
+import { ButtonGroupType } from "../components/ButtonGroupType";
+// import { FragmentsPlantel } from "../components/FragmentsPlantel";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
@@ -15,11 +16,13 @@ import Dimensions from "../constants/Dimensions";
 import DATA from "../dummy/DATA";
 
 export default function AssistanceScreen() {
+  //States
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [visible, setVisible] = useState(false);
-
+  //Utils
   const buttons = ["Plantel Fijo", "Mini Plantel", "Plantel Móvil"];
 
+  //Event Handlers
   const updateIndex = (selectedIndex) => {
     setSelectedIndex(selectedIndex);
   };
@@ -28,6 +31,7 @@ export default function AssistanceScreen() {
     setVisible(!visible);
   };
 
+  //Render Components
   const renderFragment = (selectedIndex) => {
     switch (selectedIndex) {
       case 0:
@@ -63,31 +67,25 @@ export default function AssistanceScreen() {
       <View style={styles.container}>
         <Title>Control de Asistencia</Title>
         <Indication>Elija un plantel para marcar asistencia</Indication>
-        <ButtonGroup
-          onPress={updateIndex}
-          selectedIndex={selectedIndex}
+        <ButtonGroupType
           buttons={buttons}
-          textStyle={styles.textButtonStyle}
-          containerStyle={styles.fragmentContainer}
-          innerBorderStyle={{ width: 0 }}
-          buttonContainerStyle={styles.fragmentButtonContainer}
-          selectedTextStyle={{ fontWeight: "bold", color: Colors.accent }}
-          selectedButtonStyle={styles.fragmentSelectedButton}
+          updateIndex={updateIndex}
+          selectedIndex={selectedIndex}
         />
-        {/* <ButtonGroup
-            buttons={buttons}
-            updateIndex={updateIndex}
-            selectedIndex={selectedIndex}
-          /> */}
         {renderFragment(selectedIndex)}
       </View>
-      <ConfirmAssistance visible={visible} toggleOverlay={toggleOverlay} />
+      <ConfirmAssistance
+        visible={visible}
+        toggleOverlay={toggleOverlay}
+        titleText="Hora de llegada al Plantel"
+        checkText="Primer Visita"
+        buttonText="Comenzar"
+      />
     </SafeAreaView>
   );
 }
 const WidthMainContainer = Dimensions.width;
 const WidthContainers = WidthMainContainer * 0.85;
-const HeightTitleContainer = Dimensions.height * 0.07;
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -100,37 +98,4 @@ const styles = StyleSheet.create({
   container: {
     width: WidthContainers,
   },
-  titleContainer: {
-    // backgroundColor: Colors.accent,
-    width: "100%",
-    height: HeightTitleContainer,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: "normal",
-  },
-  textButtonStyle: {
-    color: Colors.complementary,
-    fontSize: 15,
-    fontWeight: "bold",
-    marginHorizontal: 20,
-    textAlign: "center",
-  },
-
-  fragmentContainer: {
-    height: HeightTitleContainer,
-    borderWidth: 0,
-    borderColor: Colors.complementary,
-    marginVertical: 10,
-    marginHorizontal: 0,
-  },
-  fragmentButtonContainer: {
-    borderWidth: 2,
-  },
-  fragmentSelectedButton: {
-    backgroundColor: Colors.complementary,
-  },
-  fragmentTextSelectedStyle: {},
 });
