@@ -8,7 +8,6 @@ import { ConfirmButton, CancelButton } from "./Buttons";
 //constants
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
-import { Col } from "native-base";
 
 export const ConfirmAssistance = ({
   visible,
@@ -67,23 +66,5 @@ const styles = StyleSheet.create({
   notifyAdminText: {
     fontSize: 18,
     fontWeight: "bold",
-  },
-  cancelButton: {
-    width: 40,
-    height: 40,
-    backgroundColor: Colors.complementary,
-    borderRadius: 100,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  line: {
-    width: 25,
-    height: 7,
-    backgroundColor: Colors.accent,
-    borderRadius: 2,
-  },
-  cancelButtonContainer: {
-    width: Dimensions.width * 0.8,
-    alignItems: "flex-end",
   },
 });

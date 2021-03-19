@@ -1,19 +1,23 @@
-import React from "react";
+import React, { memo } from "react";
+import { StyleSheet } from "react-native";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabs from "./BottomTabs";
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
 
+//constants
+const Stack = createStackNavigator();
+const HeaderHeight = Dimensions.height * 0.1;
+const HeaderTitleHeight = HeaderHeight / 3.5;
+
 export default function MainNavigator() {
-  const Stack = createStackNavigator();
-  const HeaderHeight = Dimensions.height * 0.12;
-  const HeaderTitleHeight = HeaderHeight / 3.5;
+  const BottomTabsMemo = memo(BottomTabs);
 
   /**
    * Esta función obtiene el título en función de los nombres de
    * ruta de las BottomTabs
-   * @param {*} route - Objeto de rutas
+   * @param {route} route - Objeto de rutas
    * @returns Te devuelve el título
    */
   function getHeaderTitle(route) {
@@ -31,20 +35,25 @@ export default function MainNavigator() {
     <Stack.Navigator style={{ backgroundColor: Colors.complementary }}>
       <Stack.Screen
         name="Home"
-        component={BottomTabs}
+        component={BottomTabsMemo}
         options={({ route }) => ({
           title: "Lafarge Holcim", //Fix
           headerTitle: getHeaderTitle(route),
           headerTintColor: Colors.dominant,
-          headerStyle: {
-            height: HeaderHeight,
-            backgroundColor: Colors.complementary,
-          },
-          headerTitleStyle: {
-            fontSize: HeaderTitleHeight,
-          },
+          headerStyle: styles.headerStyle,
+          headerTitleStyle: styles.headerTitleStyle,
         })}
       />
     </Stack.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    height: HeaderHeight,
+    backgroundColor: Colors.complementary,
+  },
+  headerTitleStyle: {
+    fontSize: HeaderTitleHeight,
+  },
+});
