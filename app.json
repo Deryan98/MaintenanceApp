@@ -5,9 +5,13 @@
     "name": "MaintenanceApp",
     "slug": "MaintenanceApp",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "icon": "./src/assets/icons/Splash.png",
+    "splash": {
+      "image": "./src/assets/icons/Logo.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
     "packagerOpts": {
       "config": "metro.config.js",
       "sourceExts": [
