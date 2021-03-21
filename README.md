@@ -1,6 +1,7 @@
 # MaintenanceApp
+This project is a bussiness innovation project.
 
-##Setting up the dev environment
+## Setting up the dev environment
 Look for the Expo Cli Quickstart [Here](https://reactnative.dev/docs/environment-setup) or checkout this other [Site](https://docs.expo.io/get-started/installation/)
 
 ## Expo Go
