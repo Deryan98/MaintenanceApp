@@ -9,7 +9,7 @@ import { ConfirmButton, CancelButton } from "./Buttons";
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
 
-export const ConfirmAssistance = ({
+export const ConfirmDialog = ({
   visible,
   toggleOverlay,
   titleText,

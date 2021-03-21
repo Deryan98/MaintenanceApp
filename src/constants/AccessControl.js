@@ -4,7 +4,7 @@ import TopTabs from "../navigation/TopTabs";
 /**
  * Implement Redux or Context
  */
-const isActive = false;
+const isActive = true;
 let RenderScreen;
 if (isActive) {
   RenderScreen = AssistanceScreen;

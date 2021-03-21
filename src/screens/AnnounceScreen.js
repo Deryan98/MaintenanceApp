@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import { color } from "react-native-reanimated";
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
 

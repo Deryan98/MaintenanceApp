@@ -12,6 +12,10 @@ const HeaderHeight = Dimensions.height * 0.1;
 const HeaderTitleHeight = HeaderHeight / 3.5;
 
 export default function MainNavigator() {
+  /**
+   * Memoizo este componente para
+   * evitar que sea renderizado innecesariamente
+   */
   const BottomTabsMemo = memo(BottomTabs);
 
   /**
