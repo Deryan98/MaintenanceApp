@@ -7,25 +7,26 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+//constants
 import Colors from "../constants/Colors";
-import SantaTecla from "../assets/img/SantaTecla.jpg";
-import SanMiguel from "../assets/img/SanMiguel.jpg";
 
 const HandlePress = () => {
   return Alert.alert("Seguimos Trabajando!");
 };
 
-export const Card = ({ title, image, toggleOverlay }) => (
-  <View style={styles.cardItem}>
-    <TouchableOpacity onPress={toggleOverlay}>
-      <ImageBackground source={SanMiguel} style={styles.bgImage}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{title}</Text>
-        </View>
-      </ImageBackground>
-    </TouchableOpacity>
-  </View>
-);
+export const Card = ({ title, image, triggerEvent, type }) => {
+  return (
+    <View style={styles.cardItem}>
+      <TouchableOpacity onPress={triggerEvent}>
+        <ImageBackground source={image} style={styles.bgImage}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{title}</Text>
+          </View>
+        </ImageBackground>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   cardItem: {

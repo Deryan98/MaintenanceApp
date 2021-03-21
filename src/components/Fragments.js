@@ -6,7 +6,7 @@ export const Fragments = ({
   selectedIndex,
   updateIndex,
   buttons,
-  toggleOverlay,
+  triggerEvent,
   data,
   categoriesArray,
 }) => {
@@ -20,7 +20,7 @@ export const Fragments = ({
       <GridFlatList
         selectedTypeItem={categoriesArray[selectedIndex]}
         data={data}
-        toggleOverlay={toggleOverlay}
+        triggerEvent={triggerEvent}
       />
     </>
   );

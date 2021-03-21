@@ -2,16 +2,12 @@ import React from "react";
 import { FlatList } from "react-native";
 import { Card } from "./Card";
 
-export default function GridFlatList({
-  data,
-  selectedTypeItem,
-  toggleOverlay,
-}) {
+export default function GridFlatList({ data, selectedTypeItem, triggerEvent }) {
   //Filtering Data given a selectedType
   const filterData = () => {
     let dataToRender = [];
     data.map((item) => {
-      if (item.tipo == selectedTypeItem) {
+      if (item.type == selectedTypeItem) {
         dataToRender.push(item);
       }
     });
@@ -19,7 +15,12 @@ export default function GridFlatList({
   };
   //Card Component to be rendered into FlatList
   const renderItem = ({ item }) => (
-    <Card title={item.title} toggleOverlay={toggleOverlay} />
+    <Card
+      title={item.title}
+      image={item.image}
+      triggerEvent={triggerEvent}
+      type={item.type}
+    />
   );
   return (
     <FlatList
