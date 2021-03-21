@@ -5,19 +5,18 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
-  Alert,
 } from "react-native";
 //constants
 import Colors from "../constants/Colors";
 
-const HandlePress = () => {
-  return Alert.alert("Seguimos Trabajando!");
-};
-
-export const Card = ({ title, image, triggerEvent, type }) => {
+export const Card = ({ title, image, triggerEvent }) => {
   return (
     <View style={styles.cardItem}>
-      <TouchableOpacity onPress={triggerEvent}>
+      <TouchableOpacity
+        onPress={triggerEvent}
+        style={{ backgroundColor: Colors.accent }}
+        activeOpacity={0.5}
+      >
         <ImageBackground source={image} style={styles.bgImage}>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>{title}</Text>

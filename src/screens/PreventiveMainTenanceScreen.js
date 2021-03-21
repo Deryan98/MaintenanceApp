@@ -19,7 +19,7 @@ export default ({ navigation }) => {
   const updateIndex = (selectedIndex) => {
     setSelectedIndex(selectedIndex);
   };
-  const navigate = () => {
+  const triggerEvent = () => {
     console.log("Levanta el QR");
   };
   return (
@@ -32,7 +32,7 @@ export default ({ navigation }) => {
           buttons={EquipmentTypeArray}
           updateIndex={updateIndex}
           selectedIndex={selectedIndex}
-          triggerEvent={navigate}
+          triggerEvent={triggerEvent}
           data={EQUIPOS}
           categoriesArray={EquipmentTypeArray}
         />
