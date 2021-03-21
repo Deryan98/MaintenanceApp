@@ -9,9 +9,9 @@ import { Fragments } from "../components/Fragments";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
-import { PlantelType, PlantelTypeArray } from "../constants/PlantelTypeEnum";
+import { PlantelType, PlantelTypeArray } from "../constants/Enum";
 //dummy
-import DATA from "../dummy/DATA";
+import { PLANTELES } from "../dummy/PLANTELES";
 
 export default function AssistanceScreen() {
   //States
@@ -43,8 +43,8 @@ export default function AssistanceScreen() {
           buttons={buttons}
           updateIndex={updateIndex}
           selectedIndex={selectedIndex}
-          toggleOverlay={toggleOverlay}
-          data={DATA}
+          triggerEvent={toggleOverlay}
+          data={PLANTELES}
           categoriesArray={PlantelTypeArray}
         />
       </View>
