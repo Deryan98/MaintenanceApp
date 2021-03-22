@@ -5,7 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabs from "./BottomTabs";
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
-
+import { Fab } from "../components/Fab";
+import { isActive } from "../constants/AccessControl";
+import { ExitButton } from "../components/Buttons";
 //constants
 const Stack = createStackNavigator();
 const HeaderHeight = Dimensions.height * 0.1;
@@ -35,6 +37,11 @@ export default function MainNavigator() {
     }
   }
 
+  const getHeaderRightComponent = () => {
+    if (!isActive) return <ExitButton text="Salida" />;
+    return <></>;
+  };
+
   return (
     <Stack.Navigator style={{ backgroundColor: Colors.complementary }}>
       <Stack.Screen
@@ -46,6 +53,7 @@ export default function MainNavigator() {
           headerTintColor: Colors.dominant,
           headerStyle: styles.headerStyle,
           headerTitleStyle: styles.headerTitleStyle,
+          headerRight: () => getHeaderRightComponent(),
         })}
       />
     </Stack.Navigator>

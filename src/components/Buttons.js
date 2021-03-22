@@ -37,6 +37,24 @@ export const CancelButton = ({ onPress }) => {
   );
 };
 
+export const ExitButton = ({ text, onPress }) => {
+  return (
+    <Button
+      title={text}
+      type="outline"
+      buttonStyle={{
+        backgroundColor: Colors.complementary,
+        borderColor: Colors.accent,
+        borderRadius: 100,
+        borderWidth: 3,
+      }}
+      containerStyle={{ marginRight: 10 }}
+      titleStyle={{ color: Colors.accent, fontSize: 18 }}
+      onPress={() => console.log("Se dispara un Action Redux")}
+    />
+  );
+};
+
 const styles = StyleSheet.create({
   confirmButtonContainer: {
     width: "100%",
