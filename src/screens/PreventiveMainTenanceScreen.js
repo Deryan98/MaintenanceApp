@@ -7,7 +7,7 @@ import { Fragments } from "../components/Fragments";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
-import { EquipmentType, EquipmentTypeArray } from "../constants/Enum";
+import { EquipmentTypeArray } from "../constants/Enum";
 //dummy
 import { EQUIPOS } from "../dummy/EQUIPOS";
 

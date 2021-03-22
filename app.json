@@ -5,7 +5,7 @@
     "name": "MaintenanceApp",
     "slug": "MaintenanceApp",
     "version": "1.0.0",
-    "icon": "./src/assets/icons/Splash.png",
+    "icon": "./src/assets/icons/iconApp.png",
     "splash": {
       "image": "./src/assets/icons/Logo.jpg",
       "resizeMode": "contain",
