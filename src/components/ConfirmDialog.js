@@ -8,7 +8,9 @@ import { ConfirmButton, CancelButton } from "./Buttons";
 //constants
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
-
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { toggleAccess } from "../store/actions/access";
 export const ConfirmDialog = ({
   visible,
   toggleOverlay,
@@ -19,6 +21,14 @@ export const ConfirmDialog = ({
   const [check, setCheck] = useState(false);
   const toggleCheckBox = () => {
     setCheck(!check);
+  };
+
+  const dispatch = useDispatch();
+  const manageAccess = useSelector((state) => state.access.access);
+  const ManageAccessHandler = () => {
+    console.log(manageAccess);
+    dispatch(toggleAccess(manageAccess));
+    return console.log("Puro Redux");
   };
   return (
     <Overlay
@@ -43,7 +53,10 @@ export const ConfirmDialog = ({
               Se notificará a los administradores
             </Text>
           </View>
-          <ConfirmButton buttonText={buttonText} />
+          <ConfirmButton
+            buttonText={buttonText}
+            onPress={ManageAccessHandler}
+          />
         </View>
       </>
     </Overlay>

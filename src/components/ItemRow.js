@@ -57,9 +57,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.dominant,
     overflow: "hidden",
     width: "100%",
-    height: 75,
+    height: 80,
   },
-
   leftContent: {
     flex: 1,
     justifyContent: "center",
@@ -114,14 +113,14 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   failureCountNumberContainer: {
-    height: "60%",
+    flex: 1,
     width: "100%",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   failureCount: { fontWeight: "bold", color: Colors.accent, fontSize: 25 },
   failureCountLabelContainer: {
-    height: "40%",
+    flex: 1,
     width: "100%",
     marginBottom: 5,
     justifyContent: "center",

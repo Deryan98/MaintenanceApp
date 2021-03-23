@@ -1,13 +1,14 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { StyleSheet } from "react-native";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabs from "./BottomTabs";
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
-import { Fab } from "../components/Fab";
-import { isActive } from "../constants/AccessControl";
 import { ExitButton } from "../components/Buttons";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { toggleAccess } from "../store/actions/access";
 //constants
 const Stack = createStackNavigator();
 const HeaderHeight = Dimensions.height * 0.1;
@@ -22,7 +23,7 @@ export default function MainNavigator() {
 
   /**
    * Esta función obtiene el título en función de los nombres de
-   * ruta de las BottomTabs
+   * ruta de las BottomTabs cx
    * @param {route} route - Objeto de rutas
    * @returns Te devuelve el título
    */
@@ -37,8 +38,18 @@ export default function MainNavigator() {
     }
   }
 
+  // const dispatch = useDispatch();
+  // const ManageAccessHandler = () => {
+  //   const manageAccess = useSelector((state) => state.access.access);
+  //   console.log(manageAccess);
+  //   dispatch(toggleAccess(manageAccess));
+  //   return console.log("Puro Redux");
+  // };
+
+  const manageAccess = useSelector((state) => state.access.access);
   const getHeaderRightComponent = () => {
-    if (!isActive) return <ExitButton text="Salida" />;
+    console.log(manageAccess);
+    if (!manageAccess) return <ExitButton text="Salida" />;
     return <></>;
   };
 

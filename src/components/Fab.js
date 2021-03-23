@@ -3,20 +3,23 @@ import { StyleSheet } from "react-native";
 import { FAB } from "react-native-paper";
 import Colors from "../constants/Colors";
 
-export const Fab = () => (
+export const Fab = ({ onPress }) => (
   <FAB
     style={styles.fab}
-    small
-    icon="plus"
-    onPress={() => console.log("Pressed")}
+    icon="location-exit"
+    onPress={onPress}
+    color={Colors.accent}
   />
 );
 
 const styles = StyleSheet.create({
   fab: {
     position: "absolute",
-    color: Colors.accent,
-    margin: 16,
+    backgroundColor: Colors.complementary,
+    borderColor: Colors.accent,
+    borderWidth: 3,
+    borderRadius: 100,
+    margin: 5,
     right: 0,
     bottom: 0,
   },

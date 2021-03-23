@@ -3,7 +3,13 @@ import { View, SafeAreaView, StatusBar, StyleSheet } from "react-native";
 //components
 import { Indication } from "../components/Indication";
 import { Title } from "../components/Title";
-import { Fragments } from "../components/Fragments";
+import { ConfirmDialog } from "../components/ConfirmDialog";
+import { Fab } from "../components/Fab";
+import { ButtonGroupType } from "../components/ButtonGroupType";
+import GridFlatList from "../components/GridFlatList";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { toggleAccess } from "../store/actions/access";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
@@ -14,7 +20,7 @@ import { EQUIPOS } from "../dummy/EQUIPOS";
 export default ({ navigation }) => {
   //States
   const [selectedIndex, setSelectedIndex] = useState(0);
-
+  const [visible, setVisible] = useState(false);
   //Event Handlers
   const updateIndex = (selectedIndex) => {
     setSelectedIndex(selectedIndex);
@@ -22,21 +28,48 @@ export default ({ navigation }) => {
   const triggerEvent = () => {
     console.log("Levanta el QR");
   };
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
+  const ListHeaderComponent = () => {
+    return (
+      <>
+        <Title>Mantenimiento Correctivo</Title>
+        <Indication>Realice las correcciones necesarias</Indication>
+        <ButtonGroupType
+          buttons={EquipmentTypeArray}
+          updateIndex={updateIndex}
+          selectedIndex={selectedIndex}
+        />
+      </>
+    );
+  };
+
+  const dispatch = useDispatch();
+  const manageAccess = useSelector((state) => state.access.access);
+  const manageAccessHandler = () => {
+    dispatch(toggleAccess(manageAccess));
+  };
   return (
     <SafeAreaView style={styles.mainContainer}>
       <StatusBar hidden={true} barStyle="light-content" />
       <View style={styles.container}>
-        <Title>Mantenimiento Preventivo</Title>
-        <Indication>Realice las inspecciones necesarias</Indication>
-        <Fragments
-          buttons={EquipmentTypeArray}
-          updateIndex={updateIndex}
-          selectedIndex={selectedIndex}
-          triggerEvent={triggerEvent}
+        <GridFlatList
+          selectedTypeItem={EquipmentTypeArray[selectedIndex]}
           data={EQUIPOS}
-          categoriesArray={EquipmentTypeArray}
+          triggerEvent={triggerEvent}
+          ListHeaderComponent={ListHeaderComponent}
         />
       </View>
+      <Fab onPress={toggleOverlay} />
+      <ConfirmDialog
+        visible={visible}
+        toggleOverlay={toggleOverlay}
+        titleText="Hora de salida del Plantel"
+        checkText="Ultima Visita"
+        buttonText="Salida"
+      />
     </SafeAreaView>
   );
 };

@@ -4,15 +4,28 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
 import { Icon } from "react-native-elements";
-
+//redux
+import { useSelector } from "react-redux";
 //screens
 import AnnounceScreen from "../screens/AnnounceScreen";
-import AccessControl from "../constants/AccessControl";
+import AssistanceScreen from "../screens/AssistanceScreen";
+import TopTabs from "../navigation/TopTabs";
 
 const BottomTab = createBottomTabNavigator();
 const TabBarHeight = Dimensions.height * 0.1;
 const IconHeight = TabBarHeight / 2;
 const LabelHeight = IconHeight / 2.5;
+
+export const isInsideAPlantel = () => {
+  const manageAccess = useSelector((state) => state.access.access);
+  let RenderScreen;
+  if (manageAccess) {
+    RenderScreen = AssistanceScreen;
+  } else {
+    RenderScreen = TopTabs;
+  }
+  return RenderScreen;
+};
 
 export default function BottomTabs() {
   return (
@@ -44,7 +57,7 @@ export default function BottomTabs() {
     >
       <BottomTab.Screen
         name="Home"
-        component={AccessControl}
+        component={isInsideAPlantel()}
         options={{
           tabBarLabel: "Mantenimientos",
         }}

@@ -5,11 +5,12 @@ import { StyleSheet, View, SafeAreaView } from "react-native";
 import { Indication } from "../components/Indication";
 import { Title } from "../components/Title";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { Fragments } from "../components/Fragments";
+import GridFlatList from "../components/GridFlatList";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
 import { PlantelType, PlantelTypeArray } from "../constants/Enum";
+import { ButtonGroupType } from "../components/ButtonGroupType";
 //dummy
 import { PLANTELES } from "../dummy/PLANTELES";
 
@@ -33,19 +34,29 @@ export default function AssistanceScreen() {
     setVisible(!visible);
   };
 
+  const ListHeaderComponent = () => {
+    return (
+      <>
+        <Title>Mantenimiento Correctivo</Title>
+        <Indication>Realice las correcciones necesarias</Indication>
+        <ButtonGroupType
+          buttons={buttons}
+          updateIndex={updateIndex}
+          selectedIndex={selectedIndex}
+        />
+      </>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <StatusBar hidden={true} barStyle="light-content" />
       <View style={styles.container}>
-        <Title>Control de Asistencia</Title>
-        <Indication>Elija un plantel para marcar asistencia</Indication>
-        <Fragments
-          buttons={buttons}
-          updateIndex={updateIndex}
-          selectedIndex={selectedIndex}
-          triggerEvent={toggleOverlay}
+        <GridFlatList
+          selectedTypeItem={PlantelTypeArray[selectedIndex]}
           data={PLANTELES}
-          categoriesArray={PlantelTypeArray}
+          triggerEvent={toggleOverlay}
+          ListHeaderComponent={ListHeaderComponent}
         />
       </View>
       <ConfirmDialog

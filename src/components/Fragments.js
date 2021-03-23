@@ -4,23 +4,18 @@ import GridFlatList from "./GridFlatList";
 
 export const Fragments = ({
   selectedIndex,
-  updateIndex,
-  buttons,
   triggerEvent,
   data,
   categoriesArray,
+  ListHeaderComponent,
 }) => {
   return (
     <>
-      <ButtonGroupType
-        buttons={buttons}
-        updateIndex={updateIndex}
-        selectedIndex={selectedIndex}
-      />
       <GridFlatList
         selectedTypeItem={categoriesArray[selectedIndex]}
         data={data}
         triggerEvent={triggerEvent}
+        ListHeaderComponent={ListHeaderComponent}
       />
     </>
   );

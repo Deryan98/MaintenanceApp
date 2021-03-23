@@ -3,14 +3,18 @@ import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { toggleAccess } from "../store/actions/access";
 
-export const ConfirmButton = ({ buttonText }) => {
+export const ConfirmButton = ({ buttonText, onPress }) => {
   return (
     <Button
       buttonStyle={styles.confirmButton}
       title={buttonText}
       titleStyle={styles.confirmButtonText}
       containerStyle={styles.confirmButtonContainer}
+      onPress={onPress}
     />
   );
 };
@@ -38,6 +42,14 @@ export const CancelButton = ({ onPress }) => {
 };
 
 export const ExitButton = ({ text, onPress }) => {
+  const dispatch = useDispatch();
+  const manageAccess = useSelector((state) => state.access.access);
+  console.log(`Desde afuera: ${manageAccess}`);
+  const ManageAccessHandler = () => {
+    console.log(`Desde evento: ${manageAccess}`);
+    dispatch(toggleAccess(manageAccess));
+    return console.log("Puro Redux");
+  };
   return (
     <Button
       title={text}
@@ -50,7 +62,7 @@ export const ExitButton = ({ text, onPress }) => {
       }}
       containerStyle={{ marginRight: 10 }}
       titleStyle={{ color: Colors.accent, fontSize: 18 }}
-      onPress={() => console.log("Se dispara un Action Redux")}
+      onPress={ManageAccessHandler}
     />
   );
 };
