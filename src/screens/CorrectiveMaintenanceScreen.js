@@ -13,14 +13,34 @@ import Dimensions from "../constants/Dimensions";
 import { EQUIPMENT_FAILURE_REPORT } from "../dummy/EQUIPMENT_FAILURE_REPORT";
 
 export default ({ navigation }) => {
+  /** @type {boolean} */
   const [visible, setVisible] = useState(false);
+
+  /**
+   *General event that triggers an event
+   In this case it has to navigate to the Detail of the Failure Report
+   *
+   */
   const triggerEvent = () => {
     console.log("Levanta la Pantalla Reportes");
   };
+
+  /**
+   * Event that toogles tha visible state of the
+   * Overlay or Dialog
+   */
   const toggleOverlay = () => {
     setVisible(!visible);
   };
 
+  //Utilities
+
+  /**
+   *Metrod that returns a fragment containing the
+   Header of the List to make it scrollable
+   *
+   * @return {Component} fragment 
+   */
   const ListHeaderComponent = () => {
     return (
       <View style={styles.container}>

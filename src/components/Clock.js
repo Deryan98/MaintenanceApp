@@ -2,6 +2,11 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import Colors from "../constants/Colors";
 
+/**
+ * Clock to be shown in a Dialog
+ * It shows the current Time.
+ * @returns Clock
+ */
 export const Clock = () => {
   return (
     <View style={styles.outSideClock}>

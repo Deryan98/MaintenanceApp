@@ -4,6 +4,13 @@ import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
 import { ButtonGroup } from "react-native-elements";
 
+/**
+ *Group of buttons that show the type of different options, you can choose only one
+ * @param {Array} buttons - Holds the tests to be shown as text buttons
+ * @param {function} updateIndex - Method that changes the index state
+ * @param {number} selectedIndex - The index State chosen when button is pressed
+ * @returns ButtonGrupType - a component with the buttons provided
+ */
 export const ButtonGroupType = ({ buttons, updateIndex, selectedIndex }) => {
   return (
     <ButtonGroup

@@ -7,6 +7,12 @@ import Dimensions from "../constants/Dimensions";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleAccess } from "../store/actions/access";
 
+/**
+ * Button used to Confirm Screens
+ * @param {string} buttonText - Text to be rendered in a button
+ * @param {function} onPress - Event handler
+ * @returns ConfirmButton
+ */
 export const ConfirmButton = ({ buttonText, onPress }) => {
   return (
     <Button
@@ -19,6 +25,11 @@ export const ConfirmButton = ({ buttonText, onPress }) => {
   );
 };
 
+/**
+ * Button used to cancel the Dialog Screen
+ * @param {function} onPress - Event handler
+ * @returns CancelButton
+ */
 export const CancelButton = ({ onPress }) => {
   return (
     <View style={styles.cancelButtonContainer}>
@@ -41,6 +52,12 @@ export const CancelButton = ({ onPress }) => {
   );
 };
 
+/**
+ * Exit Button to take the user away of a plantel
+ * @param {string} text - Text to be shown as a label button
+ * @param {function} onPress - Event handler
+ * @returns ExitButton
+ */
 export const ExitButton = ({ text, onPress }) => {
   const dispatch = useDispatch();
   const manageAccess = useSelector((state) => state.access.access);

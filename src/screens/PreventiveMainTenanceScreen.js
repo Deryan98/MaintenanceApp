@@ -19,19 +19,44 @@ import { EQUIPOS } from "../dummy/EQUIPOS";
 
 export default ({ navigation }) => {
   //States
+  /** @type {number} */
   const [selectedIndex, setSelectedIndex] = useState(0);
+  /** @type {boolean} */
   const [visible, setVisible] = useState(false);
   //Event Handlers
+
+  /**
+   *Updates the index state of the button Group
+   * @param {number} selectedIndex
+   */
   const updateIndex = (selectedIndex) => {
     setSelectedIndex(selectedIndex);
   };
+
+  /**
+   * General event that is triggered to
+   * navigate to other screeen
+   */
   const triggerEvent = () => {
     console.log("Levanta el QR");
   };
+
+  /**
+   * Event that toogles tha visible state of the
+   * Overlay or Dialog
+   */
   const toggleOverlay = () => {
     setVisible(!visible);
   };
 
+  //Utilities
+
+  /**
+   *Metrod that returns a fragment containing the
+   Header of the List to make it scrollable
+   *
+   * @return {Component} fragment 
+   */
   const ListHeaderComponent = () => {
     return (
       <>
@@ -48,6 +73,13 @@ export default ({ navigation }) => {
 
   const dispatch = useDispatch();
   const manageAccess = useSelector((state) => state.access.access);
+  /**
+   * Redux stuff
+   *Method used to dispatch an action,
+   In this case I toggle the state access to 
+   take the user away of the plantel
+   *
+   */
   const manageAccessHandler = () => {
     dispatch(toggleAccess(manageAccess));
   };

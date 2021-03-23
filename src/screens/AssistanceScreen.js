@@ -16,9 +16,12 @@ import { PLANTELES } from "../dummy/PLANTELES";
 
 export default function AssistanceScreen() {
   //States
+  /** @type {number} */
   const [selectedIndex, setSelectedIndex] = useState(0);
+  /** @type {boolean} */
   const [visible, setVisible] = useState(false);
   //Utils
+  /** @type {Array} */
   const buttons = [
     `Plantel ${PlantelType.FIJO}`,
     `${PlantelType.MINI} Plantel`,
@@ -26,19 +29,36 @@ export default function AssistanceScreen() {
   ];
 
   //Event Handlers
+
+  /**
+   *Updates the index state of the button Group
+   * @param {number} selectedIndex
+   */
   const updateIndex = (selectedIndex) => {
     setSelectedIndex(selectedIndex);
   };
 
+  /**
+   * Event that toogles tha visible state of the
+   * Overlay or Dialog
+   */
   const toggleOverlay = () => {
     setVisible(!visible);
   };
 
+  //Utilities
+
+  /**
+   *Metrod that returns a fragment containing the
+   Header of the List to make it scrollable
+   *
+   * @return {Component} fragment 
+   */
   const ListHeaderComponent = () => {
     return (
       <>
-        <Title>Mantenimiento Correctivo</Title>
-        <Indication>Realice las correcciones necesarias</Indication>
+        <Title>Control de Asistencia</Title>
+        <Indication>Elija un plantel para marcar asistencia.</Indication>
         <ButtonGroupType
           buttons={buttons}
           updateIndex={updateIndex}

@@ -9,6 +9,13 @@ import {
 //constants
 import Colors from "../constants/Colors";
 
+/**
+ * Card to be rendered inside a FlatList
+ * @param {string} title - Title of the card
+ * @param {string} image - Image of the entity
+ * @param {function} triggerEvent - Event Handler
+ * @returns Card
+ */
 export const Card = ({ title, image, triggerEvent }) => {
   return (
     <View style={styles.cardItem}>
