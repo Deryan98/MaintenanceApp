@@ -6,10 +6,14 @@ import BottomTabs from "./BottomTabs";
 import Dimensions from "../constants/Dimensions";
 import Colors from "../constants/Colors";
 import { ExitButton } from "../components/Buttons";
+//screens
+import ScannerScreen from "../screens/ScannerScreen";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { toggleAccess } from "../store/actions/access";
 //constants
+//constants
+import { ScreensEnum } from "../constants/enum/ScreensEnum";
 const Stack = createStackNavigator();
 const HeaderHeight = Dimensions.height * 0.1;
 const HeaderTitleHeight = HeaderHeight / 3.5;
@@ -21,6 +25,9 @@ export default function MainNavigator() {
    */
   const BottomTabsMemo = memo(BottomTabs);
 
+  const { Home, Scanner } = ScreensEnum.MainNavigator;
+  const { Maintenances, Dashboards } = ScreensEnum.BottomTabs;
+
   /**
    * Esta función obtiene el título en función de los nombres de
    * ruta de las BottomTabs cx
@@ -31,9 +38,9 @@ export default function MainNavigator() {
     const routeName = getFocusedRouteNameFromRoute(route);
 
     switch (routeName) {
-      case "Home":
+      case Maintenances:
         return "Lafarge Holcim";
-      case "User":
+      case Dashboards:
         return "Lafarge Holcim";
     }
   }
@@ -54,9 +61,12 @@ export default function MainNavigator() {
   };
 
   return (
-    <Stack.Navigator style={{ backgroundColor: Colors.complementary }}>
+    <Stack.Navigator
+      initialRouteName={Home}
+      style={{ backgroundColor: Colors.complementary }}
+    >
       <Stack.Screen
-        name="Home"
+        name={Home}
         component={BottomTabsMemo}
         options={({ route }) => ({
           title: "Lafarge Holcim", //Fix
@@ -65,6 +75,16 @@ export default function MainNavigator() {
           headerStyle: styles.headerStyle,
           headerTitleStyle: styles.headerTitleStyle,
           headerRight: () => getHeaderRightComponent(),
+        })}
+      />
+      <Stack.Screen
+        name={Scanner}
+        component={ScannerScreen}
+        options={({ route }) => ({
+          title: "",
+          headerShown: true,
+          headerStyle: { ...styles.headerStyle, opacity: 0.7 },
+          headerTintColor: Colors.dominant,
         })}
       />
     </Stack.Navigator>

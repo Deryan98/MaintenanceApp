@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import AnnounceScreen from "../screens/AnnounceScreen";
 import AssistanceScreen from "../screens/AssistanceScreen";
 import TopTabs from "../navigation/TopTabs";
+//constants
+import { ScreensEnum } from "../constants/enum/ScreensEnum";
 
 const BottomTab = createBottomTabNavigator();
 const TabBarHeight = Dimensions.height * 0.1;
@@ -28,6 +30,8 @@ export const isInsideAPlantel = () => {
 };
 
 export default function BottomTabs() {
+  const { Maintenances, Dashboards } = ScreensEnum.BottomTabs;
+
   return (
     <BottomTab.Navigator
       tabBarOptions={{
@@ -39,15 +43,20 @@ export default function BottomTabs() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
-          if (route.name == "Home") {
+          let iconType;
+          if (route.name == Maintenances) {
             iconName = "cogs";
-          } else if (route.name == "User") {
-            iconName = "history";
+            iconType = "font-awesome";
+            // iconName = "construction";
+            // iconType = "material";
+          } else if (route.name == Dashboards) {
+            iconName = "pie-chart";
+            iconType = "material";
           }
           return (
             <Icon
               name={iconName}
-              type="font-awesome"
+              type={iconType}
               color={color}
               size={IconHeight}
             />
@@ -56,7 +65,7 @@ export default function BottomTabs() {
       })}
     >
       <BottomTab.Screen
-        name="Home"
+        name={Maintenances}
         component={isInsideAPlantel()}
         options={{
           tabBarLabel: "Mantenimientos",
@@ -64,10 +73,10 @@ export default function BottomTabs() {
       />
 
       <BottomTab.Screen
-        name="User"
+        name={Dashboards}
         component={AnnounceScreen}
         options={{
-          tabBarLabel: "Historial",
+          tabBarLabel: "Informes",
         }}
       />
     </BottomTab.Navigator>

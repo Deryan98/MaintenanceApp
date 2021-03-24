@@ -14,6 +14,7 @@ import { toggleAccess } from "../store/actions/access";
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
 import { EquipmentTypeArray } from "../constants/Enum";
+import { ScreensEnum } from "../constants/enum/ScreensEnum";
 //dummy
 import { EQUIPOS } from "../dummy/EQUIPOS";
 
@@ -23,6 +24,9 @@ export default ({ navigation }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   /** @type {boolean} */
   const [visible, setVisible] = useState(false);
+
+  const { _, Scanner } = ScreensEnum.MainNavigator;
+
   //Event Handlers
 
   /**
@@ -38,7 +42,8 @@ export default ({ navigation }) => {
    * navigate to other screeen
    */
   const triggerEvent = () => {
-    console.log("Levanta el QR");
+    console.log(`Soy la variable ${Scanner}`);
+    navigation.navigate(Scanner);
   };
 
   /**
