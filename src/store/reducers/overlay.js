@@ -11,6 +11,9 @@ const overlayReducer = (state = initialState, action) => {
       console.log(`El action.overlay en overlayReducer es: ${action.visible}`);
       return !action.visible;
     default:
+      console.log(
+        `Caí en el default del switch de Overlay con estado: ${state.visible}`
+      );
       return state;
   }
 };

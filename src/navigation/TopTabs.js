@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 //screens
@@ -9,6 +9,8 @@ import Colors from "../constants/Colors";
 
 export default () => {
   const Tab = createMaterialTopTabNavigator();
+  const PreventiveMaintenanceMemo = memo(PreventiveMaintenance);
+  const CorrectiveMaintenanceMemo = memo(CorrectiveMaintenance);
 
   return (
     <Tab.Navigator
@@ -23,14 +25,14 @@ export default () => {
     >
       <Tab.Screen
         name="Preventive"
-        component={PreventiveMaintenance}
+        component={PreventiveMaintenanceMemo}
         options={{
           title: "Preventivo",
         }}
       />
       <Tab.Screen
         name="Corrective"
-        component={CorrectiveMaintenance}
+        component={CorrectiveMaintenanceMemo}
         options={{
           title: "Correctivo",
         }}

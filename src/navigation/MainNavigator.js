@@ -49,6 +49,7 @@ export default function MainNavigator() {
   const dispatch = useDispatch();
   const manageAccess = useSelector((state) => state.access);
   const manageOverlay = useSelector((state) => state.overlay);
+
   const ManageOverlayHandler = () => {
     console.log(`El Overlay desde MainNav es: ${manageOverlay}`);
     dispatch(toggleOverlay(manageOverlay));

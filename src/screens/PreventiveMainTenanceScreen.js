@@ -4,12 +4,8 @@ import { View, SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { Indication } from "../components/Indication";
 import { Title } from "../components/Title";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { Fab } from "../components/Fab";
 import { ButtonGroupType } from "../components/ButtonGroupType";
 import GridFlatList from "../components/GridFlatList";
-//redux
-import { useSelector, useDispatch } from "react-redux";
-import { toggleOverlay } from "../store/actions/access";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
@@ -46,18 +42,6 @@ export default ({ navigation }) => {
     navigation.navigate(Scanner);
   };
 
-  /**
-   * Event that toogles tha visible state of the
-   * Overlay or Dialog
-   */
-  const dispatch = useDispatch();
-  const manageOverlay = useSelector((state) => state.overlay);
-  console.log(`Desde Preventive Screen, el overlay es: ${manageOverlay} `);
-
-  const toggleOverlay = () => {
-    dispatch(toggleOverlay(manageOverlay));
-  };
-
   //Utilities
 
   /**
@@ -80,16 +64,6 @@ export default ({ navigation }) => {
     );
   };
 
-  /**
-   * Redux stuff
-   *Method used to dispatch an action,
-   In this case I toggle the state access to 
-   take the user away of the plantel
-   *
-   */
-  const manageAccessHandler = () => {
-    dispatch(toggleAccess(manageAccess));
-  };
   return (
     <SafeAreaView style={styles.mainContainer}>
       <StatusBar hidden={true} barStyle="light-content" />
@@ -103,8 +77,8 @@ export default ({ navigation }) => {
       </View>
       {/* <Fab onPress={toggleOverlay} /> */}
       <ConfirmDialog
-        visible={manageOverlay}
-        toggleInnerOverlay={toggleOverlay}
+        // visible={manageOverlay}
+        // toggleInnerOverlay={toggleOverlay}
         titleText="Hora de salida del Plantel"
         checkText="Ultima Visita"
         buttonText="Salida"

@@ -4,8 +4,6 @@ import { Text, View, StyleSheet, SafeAreaView, StatusBar } from "react-native";
 import { Title } from "../components/Title";
 import { Indication } from "../components/Indication";
 import FailureReportList from "../components/FailureReportList";
-import { ConfirmDialog } from "../components/ConfirmDialog";
-import { Fab } from "../components/Fab";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
@@ -13,9 +11,6 @@ import Dimensions from "../constants/Dimensions";
 import { EQUIPMENT_FAILURE_REPORT } from "../dummy/EQUIPMENT_FAILURE_REPORT";
 
 export default ({ navigation }) => {
-  // /** @type {boolean} */
-  // const [visible, setVisible] = useState(false);
-
   /**
    *General event that triggers an event
    In this case it has to navigate to the Detail of the Failure Report
@@ -24,14 +19,6 @@ export default ({ navigation }) => {
   const triggerEvent = () => {
     console.log("Levanta la Pantalla Reportes");
   };
-
-  /**
-   * Event that toogles tha visible state of the
-   * Overlay or Dialog
-   */
-  // const toggleOverlay = () => {
-  //   setVisible(!visible);
-  // };
 
   //Utilities
 
@@ -60,15 +47,6 @@ export default ({ navigation }) => {
           ListHeaderComponent={ListHeaderComponent}
         />
       </View>
-      {/* <Fab onPress={toggleOverlay} />
-      <ConfirmDialog
-        visible={visible}
-        toggleInnerOverlay={toggleOverlay}
-        titleText="Hora de salida del Plantel"
-        checkText="Ultima Visita"
-        buttonText="Salida"
-        isArriving={false}
-      /> */}
     </SafeAreaView>
   );
 };

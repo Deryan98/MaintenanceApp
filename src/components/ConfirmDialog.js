@@ -27,7 +27,9 @@ export const ConfirmDialog = ({
 
   const dispatch = useDispatch();
   const manageAccess = useSelector((state) => state.access);
-  const manageOverlay = useSelector((state) => state.overlay);
+  let manageOverlay = useSelector((state) => state.overlay);
+  manageOverlay =
+    typeof manageOverlay === "object" ? manageOverlay.visible : manageOverlay;
   const ManageAccessHandler = () => {
     console.log(`Leo Redux acceso: ${manageAccess}`);
     console.log(`Leo Redux overlay: ${manageOverlay}`);
@@ -36,12 +38,12 @@ export const ConfirmDialog = ({
   };
 
   const toogleOuterOverlay = () => {
-    if (!isArriving) dispatch(toggleOverlay(manageOverlay));
+    dispatch(toggleOverlay(manageOverlay));
   };
 
   return (
     <Overlay
-      isVisible={visible}
+      isVisible={isArriving ? visible : manageOverlay}
       onBackdropPress={isArriving ? toggleInnerOverlay : toogleOuterOverlay}
       overlayStyle={styles.overlay}
     >

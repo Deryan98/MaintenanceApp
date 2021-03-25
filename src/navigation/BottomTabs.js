@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Dimensions from "../constants/Dimensions";
@@ -14,6 +14,7 @@ import TopTabs from "../navigation/TopTabs";
 import { ScreensEnum } from "../constants/enum/ScreensEnum";
 
 const BottomTab = createBottomTabNavigator();
+const TopTabsMemo = memo(TopTabs);
 const TabBarHeight = Dimensions.height * 0.1;
 const IconHeight = TabBarHeight / 2;
 const LabelHeight = IconHeight / 2.5;
@@ -24,7 +25,7 @@ export const isInsideAPlantel = () => {
   if (manageAccess) {
     RenderScreen = AssistanceScreen;
   } else {
-    RenderScreen = TopTabs;
+    RenderScreen = TopTabsMemo;
   }
   return RenderScreen;
 };
