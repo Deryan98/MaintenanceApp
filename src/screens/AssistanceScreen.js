@@ -6,6 +6,8 @@ import { Indication } from "../components/Indication";
 import { Title } from "../components/Title";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import GridFlatList from "../components/GridFlatList";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleOverlay } from "../store/actions/overlay";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
@@ -81,10 +83,11 @@ export default function AssistanceScreen() {
       </View>
       <ConfirmDialog
         visible={visible}
-        toggleOverlay={toggleOverlay}
+        toggleInnerOverlay={toggleOverlay}
         titleText="Hora de llegada al Plantel"
         checkText="Primer Visita"
         buttonText="Comenzar"
+        isArriving={true}
       />
     </SafeAreaView>
   );

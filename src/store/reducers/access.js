@@ -7,7 +7,9 @@ const initialState = {
 const accessReducer = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_ACCESS:
-      return !action.state;
+      console.log(`El estado de accessReducer es: ${state}`);
+      console.log(`El action.access en accessReducer es:  ${action.access}`);
+      return !action.access;
     default:
       return state;
   }

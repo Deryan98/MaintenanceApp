@@ -19,7 +19,7 @@ const IconHeight = TabBarHeight / 2;
 const LabelHeight = IconHeight / 2.5;
 
 export const isInsideAPlantel = () => {
-  const manageAccess = useSelector((state) => state.access.access);
+  const manageAccess = useSelector((state) => state.access);
   let RenderScreen;
   if (manageAccess) {
     RenderScreen = AssistanceScreen;

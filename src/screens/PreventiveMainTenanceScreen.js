@@ -9,7 +9,7 @@ import { ButtonGroupType } from "../components/ButtonGroupType";
 import GridFlatList from "../components/GridFlatList";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { toggleAccess } from "../store/actions/access";
+import { toggleOverlay } from "../store/actions/access";
 //constants
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
@@ -25,7 +25,7 @@ export default ({ navigation }) => {
   /** @type {boolean} */
   const [visible, setVisible] = useState(false);
 
-  const { _, Scanner } = ScreensEnum.MainNavigator;
+  const Scanner = ScreensEnum.MainNavigator.Scanner;
 
   //Event Handlers
 
@@ -50,8 +50,12 @@ export default ({ navigation }) => {
    * Event that toogles tha visible state of the
    * Overlay or Dialog
    */
+  const dispatch = useDispatch();
+  const manageOverlay = useSelector((state) => state.overlay);
+  console.log(`Desde Preventive Screen, el overlay es: ${manageOverlay} `);
+
   const toggleOverlay = () => {
-    setVisible(!visible);
+    dispatch(toggleOverlay(manageOverlay));
   };
 
   //Utilities
@@ -76,8 +80,6 @@ export default ({ navigation }) => {
     );
   };
 
-  const dispatch = useDispatch();
-  const manageAccess = useSelector((state) => state.access.access);
   /**
    * Redux stuff
    *Method used to dispatch an action,
@@ -99,13 +101,14 @@ export default ({ navigation }) => {
           ListHeaderComponent={ListHeaderComponent}
         />
       </View>
-      <Fab onPress={toggleOverlay} />
+      {/* <Fab onPress={toggleOverlay} /> */}
       <ConfirmDialog
-        visible={visible}
-        toggleOverlay={toggleOverlay}
+        visible={manageOverlay}
+        toggleInnerOverlay={toggleOverlay}
         titleText="Hora de salida del Plantel"
         checkText="Ultima Visita"
         buttonText="Salida"
+        isArriving={false}
       />
     </SafeAreaView>
   );

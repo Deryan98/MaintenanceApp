@@ -11,12 +11,14 @@ import Colors from "../constants/Colors";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggleAccess } from "../store/actions/access";
+import { toggleOverlay } from "../store/actions/overlay";
 export const ConfirmDialog = ({
   visible,
-  toggleOverlay,
+  toggleInnerOverlay,
   titleText,
   checkText,
   buttonText,
+  isArriving,
 }) => {
   const [check, setCheck] = useState(false);
   const toggleCheckBox = () => {
@@ -24,20 +26,29 @@ export const ConfirmDialog = ({
   };
 
   const dispatch = useDispatch();
-  const manageAccess = useSelector((state) => state.access.access);
+  const manageAccess = useSelector((state) => state.access);
+  const manageOverlay = useSelector((state) => state.overlay);
   const ManageAccessHandler = () => {
-    console.log(manageAccess);
+    console.log(`Leo Redux acceso: ${manageAccess}`);
+    console.log(`Leo Redux overlay: ${manageOverlay}`);
     dispatch(toggleAccess(manageAccess));
-    return console.log("Puro Redux");
+    if (!isArriving) dispatch(toggleOverlay(manageOverlay));
   };
+
+  const toogleOuterOverlay = () => {
+    if (!isArriving) dispatch(toggleOverlay(manageOverlay));
+  };
+
   return (
     <Overlay
       isVisible={visible}
-      onBackdropPress={toggleOverlay}
+      onBackdropPress={isArriving ? toggleInnerOverlay : toogleOuterOverlay}
       overlayStyle={styles.overlay}
     >
       <>
-        <CancelButton onPress={toggleOverlay} />
+        <CancelButton
+          onPress={isArriving ? toggleInnerOverlay : toogleOuterOverlay}
+        />
         <View style={styles.container}>
           <Title size={30}>{titleText}</Title>
           <CheckBox

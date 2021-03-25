@@ -14,6 +14,7 @@ import { toggleAccess } from "../store/actions/access";
 //constants
 //constants
 import { ScreensEnum } from "../constants/enum/ScreensEnum";
+import { toggleOverlay } from "../store/actions/overlay";
 const Stack = createStackNavigator();
 const HeaderHeight = Dimensions.height * 0.1;
 const HeaderTitleHeight = HeaderHeight / 3.5;
@@ -45,18 +46,19 @@ export default function MainNavigator() {
     }
   }
 
-  // const dispatch = useDispatch();
-  // const ManageAccessHandler = () => {
-  //   const manageAccess = useSelector((state) => state.access.access);
-  //   console.log(manageAccess);
-  //   dispatch(toggleAccess(manageAccess));
-  //   return console.log("Puro Redux");
-  // };
+  const dispatch = useDispatch();
+  const manageAccess = useSelector((state) => state.access);
+  const manageOverlay = useSelector((state) => state.overlay);
+  const ManageOverlayHandler = () => {
+    console.log(`El Overlay desde MainNav es: ${manageOverlay}`);
+    dispatch(toggleOverlay(manageOverlay));
+    return console.log("Puro Redux");
+  };
 
-  const manageAccess = useSelector((state) => state.access.access);
   const getHeaderRightComponent = () => {
     console.log(manageAccess);
-    if (!manageAccess) return <ExitButton text="Salida" />;
+    if (!manageAccess)
+      return <ExitButton text="Salida" onPress={ManageOverlayHandler} />;
     return <></>;
   };
 

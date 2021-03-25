@@ -13,8 +13,8 @@ import Dimensions from "../constants/Dimensions";
 import { EQUIPMENT_FAILURE_REPORT } from "../dummy/EQUIPMENT_FAILURE_REPORT";
 
 export default ({ navigation }) => {
-  /** @type {boolean} */
-  const [visible, setVisible] = useState(false);
+  // /** @type {boolean} */
+  // const [visible, setVisible] = useState(false);
 
   /**
    *General event that triggers an event
@@ -29,9 +29,9 @@ export default ({ navigation }) => {
    * Event that toogles tha visible state of the
    * Overlay or Dialog
    */
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
+  // const toggleOverlay = () => {
+  //   setVisible(!visible);
+  // };
 
   //Utilities
 
@@ -60,14 +60,15 @@ export default ({ navigation }) => {
           ListHeaderComponent={ListHeaderComponent}
         />
       </View>
-      <Fab onPress={toggleOverlay} />
+      {/* <Fab onPress={toggleOverlay} />
       <ConfirmDialog
         visible={visible}
-        toggleOverlay={toggleOverlay}
+        toggleInnerOverlay={toggleOverlay}
         titleText="Hora de salida del Plantel"
         checkText="Ultima Visita"
         buttonText="Salida"
-      />
+        isArriving={false}
+      /> */}
     </SafeAreaView>
   );
 };

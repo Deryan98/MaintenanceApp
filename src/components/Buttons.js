@@ -60,12 +60,8 @@ export const CancelButton = ({ onPress }) => {
  */
 export const ExitButton = ({ text, onPress }) => {
   const dispatch = useDispatch();
-  const manageAccess = useSelector((state) => state.access.access);
-  console.log(`Desde afuera: ${manageAccess}`);
   const ManageAccessHandler = () => {
-    console.log(`Desde evento: ${manageAccess}`);
-    dispatch(toggleAccess(manageAccess));
-    return console.log("Puro Redux");
+    dispatch(toggleAccess(access));
   };
   return (
     <Button
@@ -79,7 +75,7 @@ export const ExitButton = ({ text, onPress }) => {
       }}
       containerStyle={{ marginRight: 10 }}
       titleStyle={{ color: Colors.accent, fontSize: 18 }}
-      onPress={ManageAccessHandler}
+      onPress={onPress}
     />
   );
 };
